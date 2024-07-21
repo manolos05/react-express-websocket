@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
-import { UserName } from './components/userName'
-import { ChatBox } from './components/ChatBox'
+import { UserName } from './components/UserName.jsx'
+import { ChatBox } from './components/ChatBox.jsx'
 import { v4 as uuidv4 } from 'uuid';
 
 const socket = io('/')
