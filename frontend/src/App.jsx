@@ -13,6 +13,10 @@ function App() {
   const [name, setName] = useState("")
   const [activeChat, setActiveChat] = useState(false)
 
+  const [editMessage, setEditMessage] = useState("")
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const newMessage = {
@@ -37,7 +41,17 @@ function App() {
   const deleteMessage = (id) => {
     const messageToDelete = chat.find((msg) => msg.id === id);
     if (messageToDelete && messageToDelete.from === name) {
+
       socket.emit('deletemessage', id);
+    } else {
+      console.log("You can only delete your own messages");
+    }
+  };
+
+  const handleEditMessage = (id) => {
+    const messageToEdit = chat.find((msg) => msg.id === id);
+    if (messageToEdit && messageToEdit.from === name) {
+      setMessage(messageToEdit.body);
     } else {
       console.log("You can only delete your own messages");
     }
@@ -64,7 +78,7 @@ function App() {
 
         <UserName createUser={createUser} name={name} setName={setName} />
         :
-        <ChatBox chat={chat} name={name} message={message} setMessage={setMessage} handleSubmit={handleSubmit} deleteMessage={deleteMessage} />
+        <ChatBox chat={chat} name={name} message={message} setMessage={setMessage} handleSubmit={handleSubmit} deleteMessage={deleteMessage} editMessage={handleEditMessage} />
 
       }
     </div>
