@@ -29,7 +29,7 @@ export const ChatBox = ({ chat, name, message, setMessage, handleSubmit, deleteM
                 <span
                   onClick={() => deleteMessage(message.id)}
                 >
-
+                  🗑️
                 </span>
               )}
               {message.from === name && showOptions === message.id && (
